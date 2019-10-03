@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignSellerActivity"></activity>
+        <activity android:name=".SignBuyerActivity"></activity>
+        <activity android:name=".SignSellerActivity" />
         <activity
             android:name=".StartActivity"
             android:configChanges="orientation|screenSize" />
@@ -24,7 +25,7 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:configChanges="orientation|screenSize"></activity>
+            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>
