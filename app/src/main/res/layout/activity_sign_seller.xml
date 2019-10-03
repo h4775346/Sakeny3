@@ -15,7 +15,16 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_logo"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
 
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:src="@drawable/logo"
+
+                />
             <Button
                 android:id="@+id/btn_signup"
                 android:layout_width="@dimen/_150sdp"
@@ -31,7 +40,16 @@
                 android:textColor="#FFF"
                 android:textSize="@dimen/_18sdp" />
 
+            <ProgressBar
+                android:id="@+id/pro_bar"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_below="@+id/txt_pass_confirm"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_17sdp"
 
+
+                />
             <EditText
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
@@ -148,7 +166,15 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:gravity="center"
                 android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Or Sign up With"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_15sdp"
 
+
+                    />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -158,6 +184,18 @@
                     android:orientation="horizontal">
 
 
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/facebook_login"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+
+
+                        android:src="@drawable/facebook"
+
+                        />
                     <TextView
 
                         android:layout_width="wrap_content"
@@ -171,18 +209,6 @@
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/facebook_login"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginHorizontal="@dimen/_15sdp"
-
-
-                        android:src="@drawable/facebook"
-
-                        />
-
-
-                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/gmail_login"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
@@ -194,15 +220,7 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Or Sign up With"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/_15sdp"
 
-
-                    />
 
                 <View
                     android:layout_width="match_parent"
@@ -213,28 +231,10 @@
 
             </LinearLayout>
 
-            <ProgressBar
-                android:id="@+id/pro_bar"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_below="@+id/txt_pass_confirm"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_17sdp"
 
 
-                />
 
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_logo"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_150sdp"
-
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:src="@drawable/logo"
-
-                />
 
 
         </RelativeLayout>
