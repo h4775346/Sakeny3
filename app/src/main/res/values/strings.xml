@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Sakeny</string>
-
+    <string name="facebook_app_id">531671600968461</string>
+    <string name="fb_login_protocol_scheme">fb531671600968461</string>
 </resources>

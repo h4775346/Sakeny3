@@ -87,28 +87,10 @@
                 />
 
             <EditText
-                android:id="@+id/txt_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_phone"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/inputs"
-                android:hint="Your Address"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="@dimen/_6sdp"
-                android:paddingVertical="@dimen/_10sdp"
-                android:textColorHint="@color/colorPrimary"
-                android:textSize="@dimen/_15sdp"
-
-
-                />
-
-            <EditText
                 android:id="@+id/txt_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_address"
+                android:layout_below="@+id/txt_phone"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/inputs"
@@ -166,60 +148,6 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:gravity="center"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Or Sign up With"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/_15sdp"
-
-
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-
-
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/facebook_login"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginHorizontal="@dimen/_15sdp"
-
-
-                        android:src="@drawable/facebook"
-
-                        />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Or"
-                        android:textAllCaps="true"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_15sdp"
-
-
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/gmail_login"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginHorizontal="@dimen/_15sdp"
-                        android:src="@drawable/google"
-
-
-                        />
-
-                </LinearLayout>
-
 
 
                 <View
