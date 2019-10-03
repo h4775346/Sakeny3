@@ -47,7 +47,7 @@
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:text="Please Enter Your Data"
                 android:textSize="@dimen/_15sdp"
-                android:textStyle="bold"
+
                 app:layout_constraintBottom_toTopOf="@+id/btn_finish"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
             <Button
                 android:id="@+id/btn_finish"
                 android:layout_width="0dp"
-                android:layout_height="40sp"
+                android:layout_height="30sp"
                 app:layout_constraintWidth_percent=".4"
 
 
