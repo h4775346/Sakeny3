@@ -12,9 +12,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.StorageReference;
+
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class StartActivity extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class StartActivity extends AppCompatActivity {
         btn_finish_reg = findViewById(R.id.btn_finish_login);
         mAuth = FirebaseAuth.getInstance();
         image_prof=findViewById(R.id.image_profile_start);
-        image_prof.setOnClickListener(new View.OnClickListener() {
+        ((View) image_prof).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
