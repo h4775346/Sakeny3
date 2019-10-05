@@ -2,6 +2,7 @@ package com.snonosystems.sakeny;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -9,9 +10,15 @@ import android.widget.TextView;
 
 public class ViewDialog {
 
+    Activity activity;
 
+    public ViewDialog( Activity activity) {
 
-    public void showDialog(Activity activity,String message){
+        this.activity = activity;
+
+    }
+
+    public void showDialog( String message){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);

@@ -30,7 +30,7 @@
 
 
         <EditText
-            android:id="@+id/txt_mail"
+            android:id="@+id/txt_mail_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -48,7 +48,7 @@
             />
 
         <EditText
-            android:id="@+id/txt_pass"
+            android:id="@+id/txt_pass_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -57,7 +57,7 @@
             android:textColorHint="@color/colorPrimary"
 
             android:layout_marginHorizontal="@dimen/_20sdp"
-            android:layout_below="@id/txt_mail"
+            android:layout_below="@id/txt_mail_login"
             android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/inputs"
             android:paddingVertical="@dimen/_10sdp"
@@ -70,7 +70,7 @@
             android:id="@+id/check_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txt_pass"
+            android:layout_below="@+id/txt_pass_login"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:text="Remember me"
@@ -85,7 +85,7 @@
         <Button
             android:id="@+id/btn_login"
             android:layout_width="@dimen/_150sdp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:paddingHorizontal="@dimen/_20sdp"
             android:paddingVertical="@dimen/_2sdp"
             android:text="Log in"
@@ -124,10 +124,10 @@
                 android:text="Do not have account... Sign up ?"
                 android:clickable="true"
                 android:textAllCaps="true"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:layout_alignStart="@+id/txt_pass"
+                android:layout_alignStart="@+id/txt_pass_login"
 
 
                 />
@@ -169,7 +169,7 @@
                 <com.facebook.login.widget.LoginButton
                     android:id="@+id/login_button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="30dp"
@@ -187,28 +187,7 @@
                     >
 
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/facebook_login"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginHorizontal="@dimen/_15sdp"
 
-
-                        android:src="@drawable/facebook"
-
-                        />
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:text="Or"
-                        android:textStyle="bold"
-                        android:textAllCaps="true"
-
-
-                        android:textSize="@dimen/_15sdp"
-                        />
 
 
                     <androidx.appcompat.widget.AppCompatImageView

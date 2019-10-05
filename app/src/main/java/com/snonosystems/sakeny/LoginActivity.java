@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,18 +22,23 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.internal.Util;
 
 public class LoginActivity extends AppCompatActivity {
 
     TextView txtSignup;
     ViewDialog dialog;
     Button btn_login;
+    ProgressBar progress;
+    EditText txt_mail,txt_pass;
     CallbackManager mCallbackManager;
     public static String TAG = "FacebookActions";
     private FirebaseAuth mAuth;
@@ -51,11 +59,19 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        mAuth=FirebaseAuth.getInstance();
 
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = findViewById(R.id.login_button);
+        txt_mail= findViewById(R.id.txt_mail_login);
+        txt_pass =findViewById(R.id.txt_pass_login);
+        progress=findViewById(R.id.pro_bar);
+
+
+
+
+
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -81,13 +97,37 @@ public class LoginActivity extends AppCompatActivity {
 
         txtSignup = findViewById(R.id.txt_signup);
         btn_login = findViewById(R.id.btn_login);
-        dialog = new ViewDialog();
+        dialog = new ViewDialog(LoginActivity.this);
 
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-        dialog.showDialog(LoginActivity.this,"Error To Login .. Please Check Your Internet");
+
+                btn_login.setVisibility(View.INVISIBLE);
+                progress.setVisibility(View.VISIBLE);
+
+
+
+                if ( TextUtils.isEmpty(txt_pass.getText())|| TextUtils.isEmpty(txt_mail.getText())){
+
+                    showMessage("Please Confirm All Empty Data");
+
+                }else {
+                    String email = txt_mail.getText().toString();
+                    String password = txt_pass.getText().toString();
+
+                    startLogin(email,password);
+                }
+
+
+
+
+
+
+
+
+
             }
         });
 
@@ -95,7 +135,40 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getApplicationContext(), StartActivity.class));
+                startActivity(new Intent(getApplicationContext(), SignSellerActivity.class));
+
+            }
+        });
+
+
+    }
+
+    private void showMessage(String message) {
+
+        btn_login.setVisibility(View.VISIBLE);
+        progress.setVisibility(View.INVISIBLE);
+        dialog.showDialog(message);
+
+    }
+
+    private void startLogin(String email, String password) {
+
+
+        mAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e.toString().contains("There is no user")){
+                    showMessage("Failed to Login . \n Please Check Your username or password");
+                }else {
+                    showMessage(e.getMessage());
+
+                }
 
             }
         });
@@ -144,6 +217,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user!=null){
             Toast.makeText(this, "You Are Logged In", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(new Intent(getApplicationContext(),StartActivity.class)));
+            finish();
         }
 
 

@@ -50,47 +50,13 @@
 
 
                 />
-            <EditText
-                android:id="@+id/txt_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/image_logo"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/inputs"
-                android:hint="Your name"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="@dimen/_6sdp"
-                android:paddingVertical="@dimen/_10sdp"
-                android:textColorHint="@color/colorPrimary"
-                android:textSize="@dimen/_15sdp"
 
-
-                />
-
-            <EditText
-                android:id="@+id/txt_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_name"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/inputs"
-                android:hint="Phone Number"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="@dimen/_6sdp"
-                android:paddingVertical="@dimen/_10sdp"
-                android:textColorHint="@color/colorPrimary"
-                android:textSize="@dimen/_15sdp"
-
-
-                />
 
             <EditText
                 android:id="@+id/txt_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_phone"
+                android:layout_below="@+id/image_logo"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/inputs"
