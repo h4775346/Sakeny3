@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +17,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
+
+import java.util.Objects;
 
 public class SignSellerActivity extends AppCompatActivity {
 
@@ -26,11 +31,15 @@ public class SignSellerActivity extends AppCompatActivity {
     Button btn_signup;
     ViewDialog dialog;
     ProgressBar progress ;
-
+    FirebaseDatabase database ;
+    DatabaseReference myRef ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_seller);
+        database = FirebaseDatabase.getInstance();
+
+
 
        email = findViewById(R.id.txt_mail);
        pass = findViewById(R.id.txt_pass);
@@ -50,7 +59,6 @@ public class SignSellerActivity extends AppCompatActivity {
                progress.setVisibility(View.VISIBLE);
                btn_signup.setVisibility(View.INVISIBLE);
                if(!TextUtils.isEmpty(email.getText()) || !TextUtils.isEmpty(pass.getText()) || !TextUtils.isEmpty(confirmPass.getText())){
-
 
                 String mail = email.getText().toString();
                 String password=pass.getText().toString();
@@ -86,14 +94,28 @@ public class SignSellerActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(mail, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
+                myRef = database.getReference("users").child(Objects.requireNonNull(authResult.getUser()).getUid());
+
+
+                LoginActivity.profileModel.clear();
+                LoginActivity.profileModel.setEmail(Objects.requireNonNull(authResult.getUser()).getEmail());
+                LoginActivity.profileModel.setUid(authResult.getUser().getUid());
+                myRef.setValue(LoginActivity.profileModel);
+
 
                 startActivity(new Intent(SignSellerActivity.this,StartActivity.class));
+
+
+
+
                 finish();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+
+                        Log.d("theMessage",e.getMessage());
 
                         showMessage(e.getMessage());
 

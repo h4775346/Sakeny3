@@ -38,6 +38,7 @@
         />
 
     <EditText
+        android:backgroundTint="#F0EEEE"
         android:id="@+id/txt_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,6 +57,7 @@
         />
 
     <EditText
+        android:backgroundTint="#F0EEEE"
         android:id="@+id/txt_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +81,7 @@
         android:layout_height="@dimen/_30sdp"
         android:paddingHorizontal="@dimen/_20sdp"
         android:paddingVertical="@dimen/_2sdp"
-        android:text="Finish Registration"
+        android:text="Apply"
         android:textColor="#FFF"
         android:background="@drawable/button"
 
@@ -89,6 +91,36 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_15sdp"
         />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_finish_login"
+        android:layout_marginTop="@dimen/_15sdp"
+        >
+
+        <TextView
+            android:id="@+id/txt_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginEnd="@dimen/_20sdp"
+
+            android:text="Skip >>"
+
+            android:textSize="@dimen/_20sdp"
+
+            android:textColor="@color/colorPrimaryDark"
+
+            android:clickable="true"
+
+
+            />
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

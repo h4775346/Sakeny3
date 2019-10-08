@@ -30,6 +30,7 @@
 
 
         <EditText
+            android:backgroundTint="#F0EEEE"
             android:id="@+id/txt_mail_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
             />
 
         <EditText
+            android:backgroundTint="#F0EEEE"
             android:id="@+id/txt_pass_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

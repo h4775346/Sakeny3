@@ -39,7 +39,13 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.internal.Util;
+import com.snonosystems.sakeny.Models.ProfileModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -54,19 +60,25 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     SignInButton google_login;
     private ProgressDialog mdialog;
-
+    public static ProfileModel profileModel;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     private static final int RC_SIGN_IN = 9001;
 
     @Override
     public void onStart() {
+
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-
+        profileModel=new ProfileModel();
         mAuth=FirebaseAuth.getInstance();
+        mAuth.signOut();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser!=null){
+
             updateUI(currentUser);
+
         }
 
     }
@@ -197,8 +209,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                finish();
+                FirebaseUser user = mAuth.getCurrentUser();
+                updateUI(user);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -219,9 +231,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -236,7 +249,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         // Pass the activity result back to the Facebook SDK
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+
 
 
 
@@ -333,11 +346,47 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI(final FirebaseUser user) {
 
         if (user!=null){
-            Toast.makeText(this, "You Are Logged In", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(new Intent(getApplicationContext(),StartActivity.class)));
+
+            profileModel.clear();
+            profileModel.setEmail(user.getEmail());
+
+             database = FirebaseDatabase.getInstance();
+             myRef = database.getReference("users");
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                       profileModel=snapshot.getValue(ProfileModel.class);
+
+                    if  (profileModel.getUid()==user.getUid()) {
+
+                            startActivity(new Intent(new Intent(getApplicationContext(),HomeActivity.class)));
+                            break;
+                    }
+
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+
+
+
+
+
+
             finish();
         }
 
