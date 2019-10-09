@@ -101,7 +101,6 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this,StartActivity.class));
             finish();
 
-
         } else if (id == R.id.nav_share) {
 
             mAuth.signOut();

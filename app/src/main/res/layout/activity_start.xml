@@ -13,7 +13,7 @@
         android:layout_height="@dimen/_100sdp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
-        android:src="@drawable/add_photo"
+       android:src="@drawable/add_photo"
 
 
         />
@@ -118,6 +118,7 @@
 
 
             />
+
 
         <ProgressBar
             android:id="@+id/progress_Bar"

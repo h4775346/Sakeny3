@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,7 +28,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Tag;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -86,9 +84,12 @@ public class StartActivity extends AppCompatActivity {
         txt_name = findViewById(R.id.txt_name);
         txt_phone = findViewById(R.id.txt_phone);
         txt_skip =findViewById(R.id.txt_skip);
+
         prog_txt = findViewById(R.id.progress_txt);
 
         progressBar = findViewById(R.id.progress_Bar);
+
+
 
 
         txt_skip.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +167,7 @@ public class StartActivity extends AppCompatActivity {
 
         if (PICKED_IMAGE){
 
-            //CreateProgressDialog();
+         //   CreateProgressDialog();
             Uri resultUri = image_uri;
 
             final StorageReference filePath = UserProfileImageRef.child(LoginActivity.profileModel.getUid() + ".jpg");
@@ -184,7 +185,7 @@ public class StartActivity extends AppCompatActivity {
 
                         filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
-                            public void onSuccess(final Uri uri) {
+                            public void onSuccess(Uri uri) {
 
                                 String url = uri.toString();
 
@@ -192,17 +193,6 @@ public class StartActivity extends AppCompatActivity {
                                 LoginActivity.profileModel.setImage(url);
 
                                 continueAddingData(name,phone);
-
-                                Handler hd = new Handler();
-                                hd.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-
-
-
-                                    }
-                                },500);
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -228,16 +218,24 @@ public class StartActivity extends AppCompatActivity {
                 public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
 
 
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());                    progressBar.setProgress((int)progress , true);
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                    progressBar.setProgress((int)progress , true);
                     progressBar.setVisibility(View.VISIBLE);
                     prog_txt.setText((int)progress + " %");
                     Log.d("su","onProgress: " + progress + "% uploaded");
 
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    prog_txt.append("file uploaded");
+
+
+
+
+
+              /*      if(progress>=100){
+                        progressdialog.dismiss();
+                    }
+*/
+
+
+
                 }
             });
         }else {
@@ -256,7 +254,19 @@ public class StartActivity extends AppCompatActivity {
     }
 
     
+    private void myProg(final int progress){
 
+        Handler hd = new Handler();
+        hd.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressdialog.setProgress( progress);
+            }
+        },500);
+
+
+
+    }
 
     private void continueAddingData(String name , String phone) {
 
@@ -298,8 +308,6 @@ public class StartActivity extends AppCompatActivity {
         if (requestCode == IMG_CODE && resultCode == RESULT_OK && data.getData() != null) {
             image_uri = data.getData();
 
-
-
             CropImage.activity(image_uri)
                     .setAspectRatio(1, 1)
                     .setMinCropWindowSize(500, 500)
@@ -326,7 +334,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
-   /* public void CreateProgressDialog()
+    public void CreateProgressDialog()
     {
 
         progressdialog = new ProgressDialog(StartActivity.this);
@@ -341,7 +349,7 @@ public class StartActivity extends AppCompatActivity {
 
         progressdialog.show();
 
-    }*/
+    }
 
 
 }

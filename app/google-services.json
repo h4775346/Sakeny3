@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "411837657998-bramp2d3svgtnksq9lo3ius4vo3hoeou.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.snonosystems.sakeny",
-            "certificate_hash": "654681a0efe87b50ac3aab2d0ca5713cd7135a36"
-          }
-        },
-        {
           "client_id": "411837657998-e81c3a6m7trce44lqaptisrg906cgr22.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

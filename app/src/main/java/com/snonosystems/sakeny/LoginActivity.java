@@ -211,6 +211,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(AuthResult authResult) {
                 FirebaseUser user = mAuth.getCurrentUser();
                 updateUI(user);
+
+
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -261,7 +264,7 @@ public class LoginActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
         // [START_EXCLUDE silent]
-        // showProgressDialog();
+       // showProgressDialog();
         // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -362,12 +365,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()){
 
+
                        profileModel=snapshot.getValue(ProfileModel.class);
 
-                    if  (profileModel.getUid()==user.getUid()) {
+                    if  (profileModel.getUid().equals(user.getUid())) {
 
                             startActivity(new Intent(new Intent(getApplicationContext(),HomeActivity.class)));
-                            break;
+                        finish();
                     }
 
 
@@ -387,7 +391,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-            finish();
+
         }
 
 
