@@ -1,7 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
-android {
+
+
+
+        android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -38,9 +41,10 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
 
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
 
 }
